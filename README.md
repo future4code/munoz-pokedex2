@@ -1,9 +1,9 @@
 # POKEDEX
 
 Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+- Clara Meirelles
+- Juliana Moraes
+- Gremis Tovar
 
 Link do Surge: www.link.com.br
 
