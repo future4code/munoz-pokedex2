@@ -1,10 +1,19 @@
 import React from "react";
+import Header from "../../components/Header/Header";
+import { useHistory } from "react-router-dom";
 import {} from "./Styled";
 
 const PokemonDetailsPage = () => {
+  const history = useHistory();
 
   return (
-    <h1>Detalhes Pokemon</h1>
+    <>
+      <Header
+        title={"Detalhes do Pokemon"}
+        ControllerButtonMain={() => history.goBack()}
+        ControllerButtonSecond
+      />
+    </>
   );
 };
 
