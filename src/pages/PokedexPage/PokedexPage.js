@@ -8,12 +8,10 @@ const PokedexPage = () => {
   const history = useHistory();
 
   return (
-    <>
       <Header
         title={"Pokedex"}
         ControllerButtonMain={() => goToHomePage(history)}
       />
-    </>
   );
 };
 
