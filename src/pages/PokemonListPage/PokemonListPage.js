@@ -5,6 +5,8 @@ import { useHistory } from "react-router-dom";
 import { goToPokedexPage } from "../../routes/Coordinator";
 import { ListContainer } from "./Styled";
 import axios from "axios";
+import { BASE_URL } from "../../constants/url";
+
 
 
 const PokemonListPage = () => {
@@ -12,7 +14,7 @@ const PokemonListPage = () => {
   const [pokemonList, setPokemonList] = useState([])
 
   useEffect(() => {
-    axios.get(`https://pokeapi.co/api/v2/pokemon?limit=20`)
+    axios.get(`${BASE_URL}/pokemon?limit=20`)
       .then((response) => {
         setPokemonList(response.data.results)
       })

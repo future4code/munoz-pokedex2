@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+
 export const StyledPokemonDetails = styled.section`
     height: 80vh;
     width: 70vw;
