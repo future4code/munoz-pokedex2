@@ -8,6 +8,6 @@ export const goToPokedexPage = (history) => {
   history.push("/pokedex");
 };
 
-export const goToPokemonDetailsPage = (history) => {
-  history.push("/pokemon");
+export const goToPokemonDetailsPage = (history, pokemonName) => {
+  history.push(`/pokemon/${pokemonName}`);
 };
