@@ -8,12 +8,13 @@ import {
   ContainerButton,
 } from "./Styled";
 import axios from 'axios'
+import { BASE_URL } from "../../constants/url";
 
 const CardPokemon = (props) => {
   const history = useHistory();
   const [pokemon, setPokemon] = useState()
   useEffect(() => {
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${props.name}`)
+    axios.get(`${BASE_URL}/pokemon/${props.name}`)
       .then((response) => {
         setPokemon(response.data)
       })
