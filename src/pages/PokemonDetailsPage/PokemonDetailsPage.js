@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
-import { useHistory } from "react-router-dom";
-import { StyledPokemonDetails, PokemonImages } from "./Styled";
+import { useHistory, useParams } from "react-router-dom";
+import { StyledPokemonDetails, PokemonImages, BackGround } from "./Styled";
 import axios from 'axios'
+import { BASE_URL } from "../../constants/url";
 
 const PokemonDetailsPage = () => {
   const history = useHistory();
   const [pokemon, setPokemon] = useState()
-  const pokemonName = 'bulbasaur'
+  const pathParams = useParams()
   useEffect(() => {
-    axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+    axios.get(`${BASE_URL}/pokemon/${pathParams.name}`)
       .then((response) => {
         setPokemon(response.data)
       })
@@ -17,7 +18,6 @@ const PokemonDetailsPage = () => {
         console.log('erro', err)
       })
   }, [])
-  console.log('pokemon', pokemon)
   return (
     <>
       <Header
@@ -36,7 +36,7 @@ const PokemonDetailsPage = () => {
             </PokemonImages>
             <section>
               {pokemon.stats.map((stat) => {
-                return <p><strong>{stat.stat.name}: </strong>{stat.base_stat}</p>
+                return <p key={stat.stat.name}><strong>{stat.stat.name}: </strong>{stat.base_stat}</p>
               })}
             </section>
 
