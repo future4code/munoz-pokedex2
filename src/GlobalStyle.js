@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import background from "./img/backgroundPoke.png";
 import { createGlobalStyle } from "styled-components";
 
