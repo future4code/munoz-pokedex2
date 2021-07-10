@@ -1,28 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import Header from "../../components/Header/Header";
 import CardPokemon from "../../components/CardPokemon/CardPokemon";
 import { useHistory } from "react-router-dom";
 import { goToPokedexPage } from "../../routes/Coordinator";
 import { ListContainer } from "./Styled";
-import axios from "axios";
-import { BASE_URL } from "../../constants/url";
-
-
+import GlobalStateContext from "../../global/GlobalStateContext";
 
 const PokemonListPage = () => {
   const history = useHistory();
-  const [pokemonList, setPokemonList] = useState([])
-
-  useEffect(() => {
-    axios.get(`${BASE_URL}/pokemon?limit=20`)
-      .then((response) => {
-        setPokemonList(response.data.results)
-      })
-      .catch((err) => {
-        console.log('erro', err)
-      })
-  }, [])
-
+  const { pokemons } = useContext(GlobalStateContext);
   return (
     <>
       <Header
@@ -30,15 +16,10 @@ const PokemonListPage = () => {
         ControllerButtonMain={() => goToPokedexPage(history)}
       />
       <ListContainer>
-        {pokemonList.length>0 &&
-        pokemonList.map((pokemon)=> {
-          return <CardPokemon name={pokemon.name} key={pokemon.url}/>
-        })
-        }
-{/*         
-        <CardPokemon />
-        <CardPokemon />
-        <CardPokemon /> */}
+        {pokemons &&
+          pokemons.map((pokemon) => {
+            return <CardPokemon pokemon={pokemon} key={pokemon.name} />;
+          })}
       </ListContainer>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { goToPokemonDetailsPage } from "../../routes/Coordinator";
 import {
@@ -7,32 +7,25 @@ import {
   ImagePokemon,
   ContainerButton,
 } from "./Styled";
-import axios from 'axios'
-import { BASE_URL } from "../../constants/url";
 
 const CardPokemon = (props) => {
   const history = useHistory();
-  const [pokemon, setPokemon] = useState()
-  useEffect(() => {
-    axios.get(`${BASE_URL}/pokemon/${props.name}`)
-      .then((response) => {
-        setPokemon(response.data)
-      })
-      .catch((err) => {
-        console.log('erro', err)
-      })
-  }, [])
 
   return (
     <CardContainerMain>
       <ImageContainer>
-        {pokemon &&
-          <ImagePokemon src={pokemon.sprites.front_default} alt={`imagem do Pokémon ${props.name}`} />
-        }
+        <ImagePokemon
+          src={props.pokemon && props.pokemon.sprites.front_default}
+          alt={props.pokemon.name}
+        />
       </ImageContainer>
       <ContainerButton>
         <button>Adicionar à Pokedex</button>
-        <button onClick={() => goToPokemonDetailsPage(history, props.name)}>
+        <button
+          onClick={() =>
+            goToPokemonDetailsPage(history, props.pokemon.name)
+          }
+        >
           Ver detalhes
         </button>
       </ContainerButton>
