@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import { useHistory, useParams } from "react-router-dom";
-import { StyledPokemonDetails, PokemonImages, BackGround } from "./Styled";
+import { StyledPokemonDetails, PokemonImages, Page } from "./Styled";
 import axios from 'axios'
 import { BASE_URL } from "../../constants/url";
 
@@ -17,7 +17,7 @@ const PokemonDetailsPage = () => {
       .catch((err) => {
         console.log('erro', err)
       })
-  }, [])
+  }, [pathParams])
   return (
     <>
       <Header

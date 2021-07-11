@@ -1,14 +1,16 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { goToPokedexPage } from "../../routes/Coordinator";
 import {
   ContainerMain,
   ControllerButtonOne,
   ControllerButtonTwo,
 } from "./Styled";
+import logo from '../../img/logo.png'
 
 const Header = ({ ControllerButtonMain, title, ControllerButtonSecond }) => {
   const history = useHistory();
+  const pathParams = useParams()
 
   const ButtonHeader = () => {
     switch (title) {
