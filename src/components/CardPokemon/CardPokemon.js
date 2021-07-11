@@ -18,11 +18,12 @@ const CardPokemon = (props) => {
   const addToPokedex = () => {
     const pokeIndex = pokemons.findIndex(
       (item) => item.name === props.pokemon.name
-    );
-    e(pokeIndex, 1);
+    );  
+    const newPokemonsList = [...pokemons];
+    newPokemonsList.splice(pokeIndex, 1);
     const orderedPokemons = newPokemonsList.sort((a, b) => {
-      return a.id - b.id;const newPokemonsList = [...pokemons];
-    newPokemonsList.splic
+      return a.id - b.id;
+
     });
 
     const newPokedexList = [...pokedex, props.pokemon];
