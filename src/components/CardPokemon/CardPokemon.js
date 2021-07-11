@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { goToPokemonDetailsPage } from "../../routes/Coordinator";
+import Header from "../Header/Header";
 import {
   CardContainerMain,
   ImageContainer,
@@ -12,6 +13,7 @@ const CardPokemon = (props) => {
   const history = useHistory();
 
   return (
+    
     <CardContainerMain>
       <ImageContainer>
         <ImagePokemon
@@ -30,6 +32,7 @@ const CardPokemon = (props) => {
         </button>
       </ContainerButton>
     </CardContainerMain>
+
   );
 };
 

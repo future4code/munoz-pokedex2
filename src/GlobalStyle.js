@@ -7,9 +7,6 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     width: 100vw;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-color: black;
     background-image: url(${background});
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
