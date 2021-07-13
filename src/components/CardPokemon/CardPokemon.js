@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
+import GlobalStateContext from "../../global/GlobalStateContext";
 import { goToPokemonDetailsPage } from "../../routes/Coordinator";
+import Header from "../Header/Header";
 import {
   CardContainerMain,
   ImageContainer,
@@ -10,8 +12,51 @@ import {
 
 const CardPokemon = (props) => {
   const history = useHistory();
+  const { pokemons, setPokemons, pokedex, setPokedex } =
+    useContext(GlobalStateContext);
+
+  const addToPokedex = () => {
+    const pokeIndex = pokemons.findIndex(
+      (item) => item.name === props.pokemon.name
+    );  
+    const newPokemonsList = [...pokemons];
+    newPokemonsList.splice(pokeIndex, 1);
+    const orderedPokemons = newPokemonsList.sort((a, b) => {
+      return a.id - b.id;
+
+    });
+
+    const newPokedexList = [...pokedex, props.pokemon];
+    const orderedPokedex = newPokedexList.sort((a, b) => {
+      return a.id - b.id;
+    });
+
+    setPokedex(orderedPokedex);
+    setPokemons(orderedPokemons);
+  }
+
+  const removeFromPokedex = () => {
+
+      const pokeIndex = pokedex.findIndex(
+        (item) => item.name === props.pokemon.name
+      );
+      const newPokedexList = [...pokedex];
+      newPokedexList.splice(pokeIndex, 1);
+      const orderedPokedex = newPokedexList.sort((a, b) => {
+        return a.id - b.id;
+      });
+  
+      const newPokemonList = [...pokemons, props.pokemon];
+      const orderedPokemons = newPokemonList.sort((a, b) => {
+        return a.id - b.id;
+      });
+  
+      setPokedex(orderedPokedex);
+      setPokemons(orderedPokemons);
+  }
 
   return (
+    
     <CardContainerMain>
       <ImageContainer>
         <ImagePokemon
@@ -20,7 +65,9 @@ const CardPokemon = (props) => {
         />
       </ImageContainer>
       <ContainerButton>
-        <button>Adicionar à Pokedex</button>
+        <button onClick={props.isPokedex ? removeFromPokedex : addToPokedex}>
+          {props.isPokedex ? "Remover da Pokédex" : "Adicionar a Pokédex"}
+        </button>
         <button
           onClick={() =>
             goToPokemonDetailsPage(history, props.pokemon.name)
@@ -30,6 +77,7 @@ const CardPokemon = (props) => {
         </button>
       </ContainerButton>
     </CardContainerMain>
+
   );
 };
 
