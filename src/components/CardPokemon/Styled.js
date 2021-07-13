@@ -15,7 +15,9 @@ export const ImageContainer = styled.div`
   align-items: center;
 `;
 
-export const ImagePokemon = styled.img``;
+export const ImagePokemon = styled.img`
+  width: 70%;
+`;
 
 export const ContainerButton = styled.div`
   display: grid;

@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import GlobalStateContext from "../../global/GlobalStateContext";
 import { goToPokemonDetailsPage } from "../../routes/Coordinator";
-import Header from "../Header/Header";
 import {
   CardContainerMain,
   ImageContainer,
@@ -18,12 +17,11 @@ const CardPokemon = (props) => {
   const addToPokedex = () => {
     const pokeIndex = pokemons.findIndex(
       (item) => item.name === props.pokemon.name
-    );  
+    );
     const newPokemonsList = [...pokemons];
     newPokemonsList.splice(pokeIndex, 1);
     const orderedPokemons = newPokemonsList.sort((a, b) => {
       return a.id - b.id;
-
     });
 
     const newPokedexList = [...pokedex, props.pokemon];
@@ -33,10 +31,13 @@ const CardPokemon = (props) => {
 
     setPokedex(orderedPokedex);
     setPokemons(orderedPokemons);
-  }
+  };
 
   const removeFromPokedex = () => {
-
+    const remove = window.confirm(
+      "Você quer remover este pokemon da sua pokedex?"
+    );
+    if (remove == true) {
       const pokeIndex = pokedex.findIndex(
         (item) => item.name === props.pokemon.name
       );
@@ -45,18 +46,18 @@ const CardPokemon = (props) => {
       const orderedPokedex = newPokedexList.sort((a, b) => {
         return a.id - b.id;
       });
-  
+
       const newPokemonList = [...pokemons, props.pokemon];
       const orderedPokemons = newPokemonList.sort((a, b) => {
         return a.id - b.id;
       });
-  
+
       setPokedex(orderedPokedex);
       setPokemons(orderedPokemons);
-  }
+    }
+  };
 
   return (
-    
     <CardContainerMain>
       <ImageContainer>
         <ImagePokemon
@@ -69,15 +70,12 @@ const CardPokemon = (props) => {
           {props.isPokedex ? "Remover da Pokédex" : "Adicionar a Pokédex"}
         </button>
         <button
-          onClick={() =>
-            goToPokemonDetailsPage(history, props.pokemon.name)
-          }
+          onClick={() => goToPokemonDetailsPage(history, props.pokemon.name)}
         >
           Ver detalhes
         </button>
       </ContainerButton>
     </CardContainerMain>
-
   );
 };
 
