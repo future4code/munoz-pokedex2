@@ -7,33 +7,36 @@ const GlobalState = (props) => {
   const [pokemonNames, setPokemonNames] = useState([]);
   const [pokemons, setPokemons] = useState([]);
   const [pokedex, setPokedex] = useState([]);
-  
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     getPokemonNames();
-  }, []);
+  }, [currentPage]);
 
   useEffect(() => {
     const newList = [];
     pokemonNames.forEach((item) => {
-      axios
-        .get(`${BASE_URL}/pokemon/${item.name}`)
-        .then((response) => {
-          newList.push(response.data);
-          if (newList.length === 20) {
-            const orderedList = newList.sort((a, b) => {
-              return a.id - b.id;
-            });
-            setPokemons(orderedList);
-          }
-        })
-        .catch((error) => console.log(error.message));
+      axios.get(`${BASE_URL}/pokemon/${item.name}`).then((response) => {
+        newList.push(response.data);
+        if (newList.length === 30 && currentPage < 38) {
+          const orderedList = newList.sort((a, b) => {
+            return a.id - b.id;
+          });
+          setPokemons(orderedList);
+        } else if (currentPage === 38 && newList.length === 9) {
+          const orderedList = newList.sort((a, b) => {
+            return a.id - b.id;
+          });
+          setPokemons(orderedList);
+        }
+      });
     });
-  }, [pokemonNames]);
+  }, [pokemonNames, currentPage]);
 
   const getPokemonNames = () => {
+    const limit = 30 * (currentPage - 1);
     axios
-      .get(`${BASE_URL}/pokemon?limit=20`)
+      .get(`${BASE_URL}/pokemon?limit=30&offset=${limit}`)
       .then((response) => {
         setPokemonNames(response.data.results);
       })
@@ -44,7 +47,9 @@ const GlobalState = (props) => {
     pokemons,
     setPokemons,
     pokedex,
-    setPokedex
+    setPokedex,
+    currentPage,
+    setCurrentPage,
   };
 
   return (

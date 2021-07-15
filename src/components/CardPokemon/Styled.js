@@ -24,7 +24,7 @@ export const ImageContainer = styled.div`
 `;
 
 export const ImagePokemon = styled.img`
-  height: 20vh;
+  width: 70%;
 `;
 
 export const ContainerButton = styled.div`
