@@ -34,12 +34,12 @@ const PokemonDetailsPage = () => {
               <p><strong>Tipo: </strong>{pokemon.types.map((type) => { return type.type.name + " " })}</p>
               <PokemonImages>
                 {pokemon.sprites.other.dream_world.front_default ?
-                  <img src={pokemon.sprites.other.dream_world.front_default} alt={'Imagem frontal'} /> :
-                  <img src={pokemon.sprites.front_default} alt={'Imagem frontal'} />
+                  <img src={pokemon.sprites.other.dream_world.front_default} alt={`imagem frontal do pokémon ${pathParams.name}`} /> :
+                  <img src={pokemon.sprites.front_default} alt={`imagem frontal do pokémon ${pathParams.name}`} />
                 }
                 {pokemon.sprites.other.dream_world.back_default ?
-                  <img src={pokemon.sprites.other.dream_world.back_default} alt={'Imagem de costas'} /> :
-                  <img src={pokemon.sprites.back_default} alt={'Imagem de costas'} />
+                  <img src={pokemon.sprites.other.dream_world.back_default} alt={`imagem do ${pathParams.name} de costas`} /> :
+                  <img src={pokemon.sprites.back_default} alt={`imagem do ${pathParams.name} de costas`} />
                 }
               </PokemonImages>
               <div>
