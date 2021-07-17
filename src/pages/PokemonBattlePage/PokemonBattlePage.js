@@ -11,6 +11,7 @@ import {
 } from "./Styled";
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
+import { goToPokemonDetailsPage } from "../../routes/Coordinator";
 
 const PokemonBattlePage = () => {
   const history = useHistory();
@@ -162,6 +163,8 @@ const PokemonBattlePage = () => {
                   )}
                 </PokemonImages>
                 <h1>{rival.forms[0].name}</h1>
+                <button
+          onClick={() => goToPokemonDetailsPage(history, rival.forms[0].name)}> Ver Detalhes </button>
               </div>
             </>
           )}
