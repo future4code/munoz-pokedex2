@@ -13,3 +13,7 @@ export const goToPokemonDetailsPage = (history, pokemonName, isPokedex) => {
     ? history.push(`/pokemon/${pokemonName}/telaPokedex`)
     : history.push(`/pokemon/${pokemonName}`);
 };
+
+export const goToPokemonBattlePage = (history, pokemonName) => {
+  history.push(`/pokemon/${pokemonName}/battle`)
+};

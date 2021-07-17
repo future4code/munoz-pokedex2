@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import GlobalStateContext from "../../global/GlobalStateContext";
-import { goToPokemonDetailsPage } from "../../routes/Coordinator";
+import { goToPokemonDetailsPage, goToPokemonBattlePage } from "../../routes/Coordinator";
 import {
   CardContainerMain,
   ImageContainer,
   ImagePokemon,
   ContainerButton,
+  ContainerButtonFight,
 } from "./Styled";
 import Swal from "sweetalert2";
 
@@ -79,7 +80,12 @@ const CardPokemon = (props) => {
       <ImageContainer>
         <p>{props.pokemon.name}</p>
         <ImagePokemon
-          src={props.pokemon && props.pokemon.sprites.other.dream_world.front_default ? props.pokemon.sprites.other.dream_world.front_default : props.pokemon.sprites.front_default}
+          src={
+            props.pokemon &&
+            props.pokemon.sprites.other.dream_world.front_default
+              ? props.pokemon.sprites.other.dream_world.front_default
+              : props.pokemon.sprites.front_default
+          }
           alt={props.pokemon.name}
         />
       </ImageContainer>
@@ -93,6 +99,15 @@ const CardPokemon = (props) => {
           Ver detalhes
         </button>
       </ContainerButton>
+      {props.isPokedex ? (
+      <ContainerButtonFight>
+        <button
+          onClick={() => goToPokemonBattlePage(history, props.pokemon.name)}
+        >
+          Batalha
+        </button>
+      </ContainerButtonFight>
+      ) : ""}
     </CardContainerMain>
   );
 };
