@@ -4,11 +4,11 @@ import CardPokemon from "../../components/CardPokemon/CardPokemon";
 import Header from "../../components/Header/Header";
 import GlobalStateContext from "../../global/GlobalStateContext";
 import { goToHomePage } from "../../routes/Coordinator";
-import { } from "./Styled";
+import { ListContainer } from "./Styled";
 
 const PokedexPage = () => {
   const history = useHistory();
-  const { pokedex } = useContext(GlobalStateContext)
+  const { pokedex } = useContext(GlobalStateContext);
 
   return (
     <>
@@ -16,10 +16,20 @@ const PokedexPage = () => {
         title={"Pokedex"}
         ControllerButtonMain={() => goToHomePage(history)}
       />
-     {pokedex &&
+      <ListContainer>
+        {pokedex.length > 0 ? (
           pokedex.map((pokemon) => {
-            return <CardPokemon isPokedex key={pokemon.name} pokemon={pokemon} />;
-          })}
+            return (
+              <CardPokemon isPokedex key={pokemon.name} pokemon={pokemon} />
+            );
+          })
+        ) : (
+          <h1>
+            Sua Pokedex está vazia, volta à lista de Pokemons para escolher seus
+            favoritos
+          </h1>
+        )}
+      </ListContainer>
     </>
   );
 };

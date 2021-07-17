@@ -22,11 +22,19 @@ export const ControllerButtonOne = styled.button`
   height: 3rem;
   width: 10rem;
   font-size: 1.3rem;
+  cursor: pointer;
 `;
 
 export const ControllerButtonTwo = styled.button`
-  position: absolute;
   right: 10px;
+  position: absolute;
+  background-color: transparent;
+  color: lightgray;
+  border: 1px solid gray;
+  height: 3rem;
+  width: 10rem;
+  font-size: 1.3rem;
+  cursor: pointer;
 `;
 
 export const ContainerLogo = styled.header`
@@ -44,6 +52,4 @@ export const ContainerLogo = styled.header`
   border-bottom-left-radius: 20rem;
   border-bottom-right-radius: 20rem;
   box-shadow: 9px 7px 5px #191919;
-
-
-`
+`;

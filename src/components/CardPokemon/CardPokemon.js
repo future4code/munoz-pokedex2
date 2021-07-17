@@ -8,6 +8,7 @@ import {
   ImagePokemon,
   ContainerButton,
 } from "./Styled";
+import Swal from "sweetalert2";
 
 const CardPokemon = (props) => {
   const history = useHistory();
@@ -31,30 +32,46 @@ const CardPokemon = (props) => {
 
     setPokedex(orderedPokedex);
     setPokemons(orderedPokemons);
+
+    Swal.fire({
+      position: "top-center",
+      icon: "success",
+      title: "Pokemon adicionado à pokedex",
+      showConfirmButton: false,
+      timer: 800,
+    });
   };
 
   const removeFromPokedex = () => {
-    const remove = window.confirm(
-      "Você quer remover este pokemon da sua pokedex?"
-    );
-    if (remove == true) {
-      const pokeIndex = pokedex.findIndex(
-        (item) => item.name === props.pokemon.name
-      );
-      const newPokedexList = [...pokedex];
-      newPokedexList.splice(pokeIndex, 1);
-      const orderedPokedex = newPokedexList.sort((a, b) => {
-        return a.id - b.id;
-      });
+    Swal.fire({
+      title: "Você quer remover este pokemon da pokedex?",
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: `Sim`,
+      denyButtonText: `Não`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const pokeIndex = pokedex.findIndex(
+          (item) => item.name === props.pokemon.name
+        );
+        const newPokedexList = [...pokedex];
+        newPokedexList.splice(pokeIndex, 1);
+        const orderedPokedex = newPokedexList.sort((a, b) => {
+          return a.id - b.id;
+        });
 
-      const newPokemonList = [...pokemons, props.pokemon];
-      const orderedPokemons = newPokemonList.sort((a, b) => {
-        return a.id - b.id;
-      });
+        const newPokemonList = [...pokemons, props.pokemon];
+        const orderedPokemons = newPokemonList.sort((a, b) => {
+          return a.id - b.id;
+        });
 
-      setPokedex(orderedPokedex);
-      setPokemons(orderedPokemons);
-    }
+        setPokedex(orderedPokedex);
+        setPokemons(orderedPokemons);
+        Swal.fire("Pokemon Removido!");
+      } else if (!result.isConfirmed) {
+        Swal.fire("Pokemon Não Removido");
+      }
+    });
   };
 
   return (
