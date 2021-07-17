@@ -35,11 +35,13 @@ export const CardContainerMain = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  background: black;
+  background: rgb(25, 25, 25);
   opacity: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 `;
 
 export const ImagePokemon = styled.img`
