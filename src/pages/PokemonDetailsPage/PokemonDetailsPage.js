@@ -42,6 +42,7 @@ const PokemonDetailsPage = () => {
                   <img src={pokemon.sprites.back_default} alt={`imagem do ${pathParams.name} de costas`} />
                 }
               </PokemonImages>
+
               <div>
                 <h3>Estatísticas</h3>
                 <Details>

@@ -90,8 +90,8 @@ export const PokemonImages = styled.section`
       height: 10vh;
       width: 10vw;
     }
-  }
-`;
+    
+`
 
 export const Details = styled.section`
   overflow-y: auto;
