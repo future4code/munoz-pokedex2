@@ -6,6 +6,7 @@ import { goToPokedexPage } from "../../routes/Coordinator";
 import { Container, ListContainer, ContainerPagination } from "./Styled";
 import GlobalStateContext from "../../global/GlobalStateContext";
 import Pagination from "@material-ui/lab/Pagination";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const PokemonListPage = () => {
   const history = useHistory();
@@ -23,10 +24,13 @@ const PokemonListPage = () => {
         ControllerButtonMain={() => goToPokedexPage(history)}
       />
       <ListContainer>
-        {pokemons &&
+        {pokemons.length > 0 ? (
           pokemons.map((pokemon) => {
             return <CardPokemon pokemon={pokemon} key={pokemon.name} />;
-          })}
+          })
+        ) : (
+          <CircularProgress />
+        )}
       </ListContainer>
       <ContainerPagination>
         <Pagination
