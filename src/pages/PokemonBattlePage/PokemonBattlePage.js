@@ -19,6 +19,9 @@ const PokemonBattlePage = () => {
   const [pokemon, setPokemon] = useState();
   const [rival, setRival] = useState();
   const pathParams = useParams();
+  const [damage, setDamage] = useState();
+  const [rivalHp, setRivalHp] = useState();
+  const [pokemonHp, setPokemonHp] = useState();
 
   useEffect(() => {
     axios
@@ -38,15 +41,39 @@ const PokemonBattlePage = () => {
     setRival(pokemonRival);
   };
 
+  useEffect(() => {
+    {
+      rival &&
+      setRivalHp(rival.stats[0].base_stat)
+      setPokemonHp(pokemon.stats[0].base_stat)
+    }
+  }, [rival, pokemon])
+
+  useEffect(() => {
+
+  }, [rivalHp])
   const randomIndex = () => {
     const max = 29;
     const min = 0;
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
-
   const fight = (skill, value) => {
+
     const rivalDefense = [rival.stats[2].base_stat, rival.stats[4].base_stat]
-    if ((skill.includes('special-attack') && value > rivalDefense[1]) || (skill === 'attack' && value > rivalDefense[0])) {
+    let indexDefense
+    if (skill.includes('special')) {
+      indexDefense = 1
+    } else {
+      indexDefense = 0
+    }
+    setDamage((value * 2) / rivalDefense[indexDefense])
+    console.log(damage)
+    console.log(rival.stats[0].base_stat)
+    if (damage > 1) {
+      setRivalHp(Math.floor(rivalHp / damage))
+    }
+    // if ((skill.includes('special-attack') && value > rivalDefense[1]) || (skill === 'attack' && value > rivalDefense[0])) {
+    if (rivalHp <= 0) {
       Swal.fire({
         position: "top-center",
         icon: "success",
@@ -54,24 +81,23 @@ const PokemonBattlePage = () => {
         showConfirmButton: false,
         timer: 800,
       });
-    } else {
-      Swal.fire({
-        position: "top-center",
-        icon: "error",
-        title: "Você Perdeu!!!",
-        showConfirmButton: false,
-        timer: 800,
-      });
     }
-  };
+    // } else {
+    //   Swal.fire({
+    //     position: "top-center",
+    //     icon: "error",
+    //     title: "Perdeu!!!",
+    //     showConfirmButton: false,
+    //     timer: 800,
+    //   });
+    // }
+  }
 
   const attacks = pokemon && pokemon.stats.filter((stat) => {
-    
-    if(stat.stat.name.includes('attack')) {
-      console.log(stat)
+
+    if (stat.stat.name.includes('attack')) {
       return true
     }
-    console.log('não entrou', stat)
     return false
   })
   return (
@@ -109,6 +135,7 @@ const PokemonBattlePage = () => {
                       </button>
                     );
                   })}
+                  <h3>{pokemonHp}</h3>
                 </Details>
               </div>
               <div
@@ -166,6 +193,7 @@ const PokemonBattlePage = () => {
                   )}
                 </PokemonImages>
                 <h1>{rival.forms[0].name}</h1>
+                <h3>{rivalHp}</h3>
                 <button
           onClick={() => goToPokemonDetailsPage(history, rival.forms[0].name)}> Ver Detalhes </button>
               </div>

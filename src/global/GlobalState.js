@@ -8,8 +8,6 @@ const GlobalState = (props) => {
   const [pokemons, setPokemons] = useState([]);
   const [pokedex, setPokedex] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonBattle, setPokemonBattle] = useState();
-  const [pokemonRival, setPokemonRival] = useState();
 
   useEffect(() => {
     getPokemonNames();
@@ -52,10 +50,6 @@ const GlobalState = (props) => {
     setPokedex,
     currentPage,
     setCurrentPage,
-    pokemonBattle,
-    setPokemonBattle,
-    pokemonRival,
-    setPokemonRival
   };
 
   return (
