@@ -38,6 +38,7 @@ export const ImageContainer = styled.div`
 `;
 
 export const ImagePokemon = styled.img`
+  height: 70%;
   width: 70%;
 `;
 
