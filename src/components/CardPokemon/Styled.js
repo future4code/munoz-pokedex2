@@ -51,3 +51,9 @@ export const ContainerButton = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
 `;
+
+export const ContainerButtonFight = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 35px;
+`;
