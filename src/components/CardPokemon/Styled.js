@@ -10,7 +10,20 @@ export const CardContainerMain = styled.div`
   button {
     background-color: black;
     color: white;
-    border: 1px solid gray;
+    /* border: 1px solid red; */
+    border-top: 2px solid rgb(239, 191, 1);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  button:hover {
+    background-color: rgb(239, 191, 1);
+    color: black;
+  }
+
+  button:active {
+    background-color: rgb(182, 146, 1);
   }
 `;
 

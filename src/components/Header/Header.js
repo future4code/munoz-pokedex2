@@ -1,12 +1,13 @@
 import React from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { goToPokedexPage } from "../../routes/Coordinator";
+import Logo from '../../img/logo.png'
 import {
   ContainerMain,
   ControllerButtonOne,
   ControllerButtonTwo,
+  ContainerLogo,
 } from "./Styled";
-import logo from '../../img/logo.png'
 
 const Header = ({ ControllerButtonMain, title, ControllerButtonSecond }) => {
   const history = useHistory();
@@ -15,26 +16,32 @@ const Header = ({ ControllerButtonMain, title, ControllerButtonSecond }) => {
   const ButtonHeader = () => {
     switch (title) {
       case "Lista de Pokemons":
-        return "Ir para Pokedex";
+        return "Pokedex";
       case "Pokedex":
-        return "Voltar para lista de pokemons";
+        return "Lista de Pokemons";
       default:
-        return "Voltar para lista de pokemons";
+        return "Lista de Pokemons";
     }
   };
 
   return (
-    <ContainerMain>
-      <ControllerButtonOne onClick={ControllerButtonMain}>
-        {ButtonHeader()}
-      </ControllerButtonOne>
-      <h1>{title}</h1>
-      {ControllerButtonSecond && (
-        <ControllerButtonTwo onClick={() => goToPokedexPage(history)}>
-          Ir para pokedex
-        </ControllerButtonTwo>
-      )}
-    </ContainerMain>
+    <>
+      <ContainerMain>
+        <ControllerButtonOne onClick={ControllerButtonMain}>
+          {ButtonHeader()}
+        </ControllerButtonOne>
+        <img src={Logo} />
+        {ControllerButtonSecond && (
+          <ControllerButtonTwo onClick={() => goToPokedexPage(history)}>
+            Ir para Pokedex
+          </ControllerButtonTwo>
+        )}
+      </ContainerMain>
+
+      <ContainerLogo>
+        <h1>{title}</h1>
+      </ContainerLogo>
+    </>
   );
 };
 
