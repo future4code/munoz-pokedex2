@@ -11,6 +11,7 @@ import {
 } from "./Styled";
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
+import { goToPokemonDetailsPage } from "../../routes/Coordinator";
 
 const PokemonBattlePage = () => {
   const history = useHistory();
@@ -159,7 +160,6 @@ const PokemonBattlePage = () => {
                     style={{ WebkitTransform: "scaleX(-1)" }}
                   />
                 )}
-
                 {pokemon.sprites.other.dream_world.back_default ? (
                   <img
                     width="280px"
@@ -194,6 +194,8 @@ const PokemonBattlePage = () => {
                 </PokemonImages>
                 <h1>{rival.forms[0].name}</h1>
                 <h3>{rivalHp}</h3>
+                <button
+          onClick={() => goToPokemonDetailsPage(history, rival.forms[0].name)}> Ver Detalhes </button>
               </div>
             </>
           )}
