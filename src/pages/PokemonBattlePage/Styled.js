@@ -6,7 +6,7 @@ export const DetailPageContainer = styled.main`
 
 export const StyledPokemonDetails = styled.section`
     height: 80vh;
-    width: 70vw;
+    width: 90vw;
     display:grid;
     grid-template-columns:  1fr 1fr 1fr;
     grid-template-rows: 10vh 1fr;
@@ -60,6 +60,8 @@ export const PokemonImages = styled.section`
 `
 
 export const Details = styled.section`
+    display: flex;
+    flex-direction: column;
     overflow-y: auto;
     height: 55vh;
     ::-webkit-scrollbar {
@@ -73,4 +75,21 @@ export const Details = styled.section`
         border-radius: 20px;
         border: 3px solid lightgray;
     }
+    button {
+        background-color: black;
+        color: white;
+        border: 2px solid rgb(239, 191, 1);
+        border-radius: 20px;
+        cursor: pointer;
+        margin-top: 8px;
+    }
+
+  button:hover {
+    background-color: rgb(239, 191, 1);
+    color: black;
+  }
+
+  button:active {
+    background-color: rgb(182, 146, 1);
+  }
 `

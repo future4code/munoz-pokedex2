@@ -16,7 +16,6 @@ export const CardContainerMain = styled.div`
   button {
     background-color: black;
     color: white;
-    /* border: 1px solid red; */
     border-top: 2px solid rgb(239, 191, 1);
     border-left: none;
     border-right: none;

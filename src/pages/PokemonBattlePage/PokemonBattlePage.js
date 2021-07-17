@@ -44,27 +44,35 @@ const PokemonBattlePage = () => {
   };
 
   const fight = (skill, value) => {
-    let rivalSkill = rival.stats.filter((el) => el.stat.name === skill)[0].base_stat;
-    console.log(value, rivalSkill);
-    if(value > rivalSkill) {
-        Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Ganaste!!!",
-            showConfirmButton: false,
-            timer: 800,
-          });
-    }else {
-        Swal.fire({
-            position: "top-center",
-            icon: "error",
-            title: "Perdeu!!!",
-            showConfirmButton: false,
-            timer: 800,
-          });
+    const rivalDefense = [rival.stats[2].base_stat, rival.stats[4].base_stat]
+    if ((skill.includes('special-attack') && value > rivalDefense[1]) || (skill === 'attack' && value > rivalDefense[0])) {
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "Ganaste!!!",
+        showConfirmButton: false,
+        timer: 800,
+      });
+    } else {
+      Swal.fire({
+        position: "top-center",
+        icon: "error",
+        title: "Perdeu!!!",
+        showConfirmButton: false,
+        timer: 800,
+      });
     }
   }
 
+  const attacks = pokemon && pokemon.stats.filter((stat) => {
+    
+    if(stat.stat.name.includes('attack')) {
+      console.log(stat)
+      return true
+    }
+    console.log('não entrou', stat)
+    return false
+  })
   return (
     <>
       <Header
@@ -92,12 +100,12 @@ const PokemonBattlePage = () => {
                 </PokemonImages>
                 <h1>{pokemon.forms[0].name}</h1>
                 <Details>
-                  {pokemon.stats.map((stat) => {
+                  {attacks.map((stat) => {
                     return (
-                      <p key={stat.stat.name} onClick={() => fight(stat.stat.name, stat.base_stat)} style={{cursor: "pointer"}}>
+                      <button key={stat.stat.name} onClick={() => fight(stat.stat.name, stat.base_stat)} style={{ cursor: "pointer" }}>
                         <strong>{stat.stat.name}: </strong>
                         {stat.base_stat}
-                      </p>
+                      </button>
                     );
                   })}
                 </Details>
