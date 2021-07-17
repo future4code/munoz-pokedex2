@@ -44,26 +44,27 @@ const PokemonBattlePage = () => {
   };
 
   const fight = (skill, value) => {
-    let rivalSkill = rival.stats.filter((el) => el.stat.name === skill)[0].base_stat;
+    let rivalSkill = rival.stats.filter((el) => el.stat.name === skill)[0]
+      .base_stat;
     console.log(value, rivalSkill);
-    if(value > rivalSkill) {
-        Swal.fire({
-            position: "top-center",
-            icon: "success",
-            title: "Ganaste!!!",
-            showConfirmButton: false,
-            timer: 800,
-          });
-    }else {
-        Swal.fire({
-            position: "top-center",
-            icon: "error",
-            title: "Perdeu!!!",
-            showConfirmButton: false,
-            timer: 800,
-          });
+    if (value > rivalSkill) {
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "Você Venceu!!!",
+        showConfirmButton: false,
+        timer: 800,
+      });
+    } else {
+      Swal.fire({
+        position: "top-center",
+        icon: "error",
+        title: "Você Perdeu!!!",
+        showConfirmButton: false,
+        timer: 800,
+      });
     }
-  }
+  };
 
   return (
     <>
@@ -94,7 +95,11 @@ const PokemonBattlePage = () => {
                 <Details>
                   {pokemon.stats.map((stat) => {
                     return (
-                      <p key={stat.stat.name} onClick={() => fight(stat.stat.name, stat.base_stat)} style={{cursor: "pointer"}}>
+                      <p
+                        key={stat.stat.name}
+                        onClick={() => fight(stat.stat.name, stat.base_stat)}
+                        style={{ cursor: "pointer" }}
+                      >
                         <strong>{stat.stat.name}: </strong>
                         {stat.base_stat}
                       </p>
@@ -124,7 +129,6 @@ const PokemonBattlePage = () => {
                     style={{ WebkitTransform: "scaleX(-1)" }}
                   />
                 )}
-
                 {pokemon.sprites.other.dream_world.back_default ? (
                   <img
                     width="280px"
