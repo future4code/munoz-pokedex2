@@ -19,7 +19,8 @@ const PokemonBattlePage = () => {
   const [rival, setRival] = useState();
   const pathParams = useParams();
   const [damage, setDamage] = useState();
-  const [rivalHp, setRivalHp] = useState()
+  const [rivalHp, setRivalHp] = useState();
+  const [pokemonHp, setPokemonHp] = useState();
 
   useEffect(() => {
     axios
@@ -39,13 +40,16 @@ const PokemonBattlePage = () => {
     setRival(pokemonRival);
   };
 
-  useEffect(()=> {
-    {rival &&
-    setRivalHp(rival.stats[0].base_stat)}
-  }, [rival])
+  useEffect(() => {
+    {
+      rival &&
+      setRivalHp(rival.stats[0].base_stat)
+      setPokemonHp(pokemon.stats[0].base_stat)
+    }
+  }, [rival, pokemon])
 
-  useEffect(()=> {
-    
+  useEffect(() => {
+
   }, [rivalHp])
   const randomIndex = () => {
     const max = 29;
@@ -53,19 +57,19 @@ const PokemonBattlePage = () => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
   const fight = (skill, value) => {
-    
+
     const rivalDefense = [rival.stats[2].base_stat, rival.stats[4].base_stat]
     let indexDefense
-    if (skill.includes('special')){
+    if (skill.includes('special')) {
       indexDefense = 1
     } else {
       indexDefense = 0
     }
-    setDamage((value*2)/  rivalDefense[indexDefense])
+    setDamage((value * 2) / rivalDefense[indexDefense])
     console.log(damage)
     console.log(rival.stats[0].base_stat)
-    if (damage > 1){
-      setRivalHp(Math.floor(rivalHp/damage))
+    if (damage > 1) {
+      setRivalHp(Math.floor(rivalHp / damage))
     }
     // if ((skill.includes('special-attack') && value > rivalDefense[1]) || (skill === 'attack' && value > rivalDefense[0])) {
     if (rivalHp <= 0) {
@@ -130,6 +134,7 @@ const PokemonBattlePage = () => {
                       </button>
                     );
                   })}
+                  <h3>{pokemonHp}</h3>
                 </Details>
               </div>
               <div
