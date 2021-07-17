@@ -17,12 +17,18 @@ const PokedexPage = () => {
         ControllerButtonMain={() => goToHomePage(history)}
       />
       <ListContainer>
-        {pokedex &&
+        {pokedex.length > 0 ? (
           pokedex.map((pokemon) => {
             return (
               <CardPokemon isPokedex key={pokemon.name} pokemon={pokemon} />
             );
-          })}
+          })
+        ) : (
+          <h1>
+            Sua Pokedex está vazia, volta à lista de Pokemons para escolher seus
+            favoritos
+          </h1>
+        )}
       </ListContainer>
     </>
   );
