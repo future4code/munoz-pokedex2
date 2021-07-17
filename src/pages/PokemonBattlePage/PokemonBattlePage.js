@@ -44,9 +44,13 @@ const PokemonBattlePage = () => {
   useEffect(() => {
     {
       rival &&
-      setRivalHp(rival.stats[0].base_stat)
-      setPokemonHp(pokemon.stats[0].base_stat)
+        setRivalHp(rival.stats[0].base_stat)
     }
+    {
+      pokemon &&
+        setPokemonHp(pokemon.stats[0].base_stat)
+    }
+
   }, [rival, pokemon])
 
   useEffect(() => {
