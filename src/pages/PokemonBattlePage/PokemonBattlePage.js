@@ -11,6 +11,7 @@ import {
 } from "./Styled";
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
+import { goToPokemonDetailsPage } from "../../routes/Coordinator";
 
 const PokemonBattlePage = () => {
   const history = useHistory();
@@ -57,12 +58,12 @@ const PokemonBattlePage = () => {
       Swal.fire({
         position: "top-center",
         icon: "error",
-        title: "Perdeu!!!",
+        title: "Você Perdeu!!!",
         showConfirmButton: false,
         timer: 800,
       });
     }
-  }
+  };
 
   const attacks = pokemon && pokemon.stats.filter((stat) => {
     
@@ -132,7 +133,6 @@ const PokemonBattlePage = () => {
                     style={{ WebkitTransform: "scaleX(-1)" }}
                   />
                 )}
-
                 {pokemon.sprites.other.dream_world.back_default ? (
                   <img
                     width="280px"
@@ -166,6 +166,8 @@ const PokemonBattlePage = () => {
                   )}
                 </PokemonImages>
                 <h1>{rival.forms[0].name}</h1>
+                <button
+          onClick={() => goToPokemonDetailsPage(history, rival.forms[0].name)}> Ver Detalhes </button>
               </div>
             </>
           )}

@@ -21,8 +21,14 @@ export const ControllerButtonOne = styled.button`
   border: 1px solid gray;
   height: 3rem;
   width: 10rem;
-  font-size: 1.3rem;
+  font-size: 1rem;
   cursor: pointer;
+  @media (max-width: 800px) {
+    font-size: 0.8rem;
+    left: 10px;
+    height: 2rem;
+    width: 5rem;
+  }
 `;
 
 export const ControllerButtonTwo = styled.button`
@@ -33,8 +39,13 @@ export const ControllerButtonTwo = styled.button`
   border: 1px solid gray;
   height: 3rem;
   width: 10rem;
-  font-size: 1.3rem;
+  font-size: 1rem;
   cursor: pointer;
+  @media (max-width: 800px) {
+    font-size: 0.8rem;
+    height: 2rem;
+    width: 5rem;
+  }
 `;
 
 export const ContainerLogo = styled.header`
@@ -52,4 +63,13 @@ export const ContainerLogo = styled.header`
   border-bottom-left-radius: 20rem;
   border-bottom-right-radius: 20rem;
   box-shadow: 9px 7px 5px #191919;
+  h1 {
+    font-size: 1rem;
+  }
+  @media (max-width: 700px) {
+    width: 10vw;
+    h1 {
+      display: none;
+    }
+  }
 `;
