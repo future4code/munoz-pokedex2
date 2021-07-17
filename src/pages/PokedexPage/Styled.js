@@ -15,7 +15,6 @@ export const ListContainer = styled.div`
 export const Container = styled.body`
   width: 98vw;
   height: 98vh;
-  /* background-color: pink; */
   margin: 0rem 0rem;
   padding: 0rem 0rem;
   background-image: url(${ImgFundo});
