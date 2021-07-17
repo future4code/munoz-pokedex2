@@ -11,6 +11,7 @@ import {
 } from "./Styled";
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
+import { goToPokemonDetailsPage } from "../../routes/Coordinator";
 
 const PokemonBattlePage = () => {
   const history = useHistory();
@@ -18,6 +19,9 @@ const PokemonBattlePage = () => {
   const [pokemon, setPokemon] = useState();
   const [rival, setRival] = useState();
   const pathParams = useParams();
+  const [damage, setDamage] = useState();
+  const [rivalHp, setRivalHp] = useState();
+  const [pokemonHp, setPokemonHp] = useState();
 
   useEffect(() => {
     axios
@@ -37,35 +41,65 @@ const PokemonBattlePage = () => {
     setRival(pokemonRival);
   };
 
+  useEffect(() => {
+    {
+      rival &&
+      setRivalHp(rival.stats[0].base_stat)
+      setPokemonHp(pokemon.stats[0].base_stat)
+    }
+  }, [rival, pokemon])
+
+  useEffect(() => {
+
+  }, [rivalHp])
   const randomIndex = () => {
     const max = 29;
     const min = 0;
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
-
   const fight = (skill, value) => {
-    let rivalSkill = rival.stats.filter((el) => el.stat.name === skill)[0]
-      .base_stat;
-    console.log(value, rivalSkill);
-    if (value > rivalSkill) {
+
+    const rivalDefense = [rival.stats[2].base_stat, rival.stats[4].base_stat]
+    let indexDefense
+    if (skill.includes('special')) {
+      indexDefense = 1
+    } else {
+      indexDefense = 0
+    }
+    setDamage((value * 2) / rivalDefense[indexDefense])
+    console.log(damage)
+    console.log(rival.stats[0].base_stat)
+    if (damage > 1) {
+      setRivalHp(Math.floor(rivalHp / damage))
+    }
+    // if ((skill.includes('special-attack') && value > rivalDefense[1]) || (skill === 'attack' && value > rivalDefense[0])) {
+    if (rivalHp <= 0) {
       Swal.fire({
         position: "top-center",
         icon: "success",
-        title: "Você Venceu!!!",
-        showConfirmButton: false,
-        timer: 800,
-      });
-    } else {
-      Swal.fire({
-        position: "top-center",
-        icon: "error",
-        title: "Você Perdeu!!!",
+        title: "Ganaste!!!",
         showConfirmButton: false,
         timer: 800,
       });
     }
-  };
+    // } else {
+    //   Swal.fire({
+    //     position: "top-center",
+    //     icon: "error",
+    //     title: "Perdeu!!!",
+    //     showConfirmButton: false,
+    //     timer: 800,
+    //   });
+    // }
+  }
 
+  const attacks = pokemon && pokemon.stats.filter((stat) => {
+
+    if (stat.stat.name.includes('attack')) {
+      return true
+    }
+    return false
+  })
   return (
     <>
       <Header
@@ -93,18 +127,15 @@ const PokemonBattlePage = () => {
                 </PokemonImages>
                 <h1>{pokemon.forms[0].name}</h1>
                 <Details>
-                  {pokemon.stats.map((stat) => {
+                  {attacks.map((stat) => {
                     return (
-                      <p
-                        key={stat.stat.name}
-                        onClick={() => fight(stat.stat.name, stat.base_stat)}
-                        style={{ cursor: "pointer" }}
-                      >
+                      <button key={stat.stat.name} onClick={() => fight(stat.stat.name, stat.base_stat)} style={{ cursor: "pointer" }}>
                         <strong>{stat.stat.name}: </strong>
                         {stat.base_stat}
-                      </p>
+                      </button>
                     );
                   })}
+                  <h3>{pokemonHp}</h3>
                 </Details>
               </div>
               <div
@@ -162,6 +193,9 @@ const PokemonBattlePage = () => {
                   )}
                 </PokemonImages>
                 <h1>{rival.forms[0].name}</h1>
+                <h3>{rivalHp}</h3>
+                <button
+          onClick={() => goToPokemonDetailsPage(history, rival.forms[0].name)}> Ver Detalhes </button>
               </div>
             </>
           )}

@@ -16,7 +16,6 @@ export const CardContainerMain = styled.div`
   button {
     background-color: black;
     color: white;
-    /* border: 1px solid red; */
     border-top: 2px solid rgb(239, 191, 1);
     border-left: none;
     border-right: none;
@@ -35,11 +34,13 @@ export const CardContainerMain = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  background: black;
+  background: rgb(25, 25, 25);
   opacity: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 `;
 
 export const ImagePokemon = styled.img`
@@ -57,3 +58,5 @@ export const ContainerButtonFight = styled.div`
   grid-template-columns: 1fr;
   height: 35px;
 `;
+
+
