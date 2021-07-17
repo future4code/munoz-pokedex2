@@ -17,7 +17,7 @@ export const StyledPokemonDetails = styled.section`
     align-self: center;
     margin-top: 30px;
     border-radius: 30px;
-    background-color: black;
+    background-color: rgb(25, 25, 25);
     color: lightgray;
     h1{
         grid-column: 1/3;
