@@ -59,6 +59,7 @@ export const PokemonImages = styled.section`
         height: 30vh;
         width: 30vh;
     }
+    
 `
 
 export const Details = styled.section`
