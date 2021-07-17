@@ -77,6 +77,7 @@ const CardPokemon = (props) => {
   return (
     <CardContainerMain>
       <ImageContainer>
+        <p>{props.pokemon.name}</p>
         <ImagePokemon
           src={props.pokemon && props.pokemon.sprites.other.dream_world.front_default ? props.pokemon.sprites.other.dream_world.front_default : props.pokemon.sprites.front_default}
           alt={props.pokemon.name}

@@ -7,6 +7,12 @@ export const CardContainerMain = styled.div`
   display: grid;
   grid-template-rows: 85% 15%;
 
+  p {
+    color: white;
+    text-transform: uppercase;
+    margin: 10px;
+  }
+
   button {
     background-color: black;
     color: white;
@@ -34,7 +40,6 @@ export const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
 `;
 
 export const ImagePokemon = styled.img`
