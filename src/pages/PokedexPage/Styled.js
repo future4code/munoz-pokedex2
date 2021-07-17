@@ -2,6 +2,12 @@ import styled from 'styled-components'
 import ImgFundo from '../../img/backgroundPoke.png'
 
 
+export const ListContainer = styled.div`
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+`;
 
 export const Container = styled.body`
     width: 98vw;

@@ -15,6 +15,7 @@ export const CardContainerMain = styled.div`
     border-left: none;
     border-right: none;
     border-bottom: none;
+    cursor: pointer;
   }
 
   button:hover {
