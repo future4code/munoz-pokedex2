@@ -7,7 +7,6 @@ export const DetailPageContainer = styled.main`
 `
 
 export const StyledPokemonDetails = styled.section`
-  height: fit-content;
   height: 80vh;
   width: 70vw;
   display:grid;
@@ -81,12 +80,14 @@ export const PokemonImages = styled.section`
     height: 25vh;
     width: 25vh;
   }
+
   @media (max-width: 800px) {
     img {
       height: 20vw;
       width: 20vw;
     }
   }
+
   @media (max-width: 500px) {
     img {
       width: 25vw;
@@ -109,6 +110,7 @@ export const Details = styled.section`
     border-radius: 20px;
     border: 3px solid lightgray;
   }
+
   @media (max-width: 800px) { 
     width: 50vw;
     letter-spacing: 0.1rem;

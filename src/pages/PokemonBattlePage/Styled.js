@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-export const DetailPageContainer = styled.main`
+export const BattlePageContainer = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-export const StyledPokemonDetails = styled.section`
+export const StyledPokemonBattle = styled.section`
   height: fit-content;
   width: 90vw;
   display:grid;
@@ -81,12 +81,14 @@ export const PokemonImages = styled.section`
     height: 25vh;
     width: 25vw;
   }
+
   @media (max-width: 800px) {
     img {
       height: 30vh;
       width: 30vw;
     }
   }
+  
   @media (max-width: 500px) {
     flex-direction: row;
     img {
@@ -130,5 +132,4 @@ export const Details = styled.section`
   button:active {
     background-color: rgb(182, 146, 1);
   }
-
 `

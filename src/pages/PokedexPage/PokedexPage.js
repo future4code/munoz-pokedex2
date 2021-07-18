@@ -25,7 +25,7 @@ const PokedexPage = () => {
           })
         ) : (
           <h1>
-            Sua Pokedex está vazia, volta à lista de Pokemons para escolher seus
+            Sua Pokedex está vazia, volte à lista de Pokemons para escolher seus
             favoritos
           </h1>
         )}

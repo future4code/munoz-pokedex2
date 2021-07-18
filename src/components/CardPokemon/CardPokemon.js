@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import GlobalStateContext from "../../global/GlobalStateContext";
 import { goToPokemonDetailsPage, goToPokemonBattlePage } from "../../routes/Coordinator";
@@ -82,7 +82,7 @@ const CardPokemon = (props) => {
         <ImagePokemon
           src={
             props.pokemon &&
-            props.pokemon.sprites.other.dream_world.front_default
+              props.pokemon.sprites.other.dream_world.front_default
               ? props.pokemon.sprites.other.dream_world.front_default
               : props.pokemon.sprites.front_default
           }
@@ -100,13 +100,13 @@ const CardPokemon = (props) => {
         </button>
       </ContainerButton>
       {props.isPokedex ? (
-      <ContainerButtonFight>
-        <button
-          onClick={() => goToPokemonBattlePage(history, props.pokemon.name)}
-        >
-          Batalha
-        </button>
-      </ContainerButtonFight>
+        <ContainerButtonFight>
+          <button
+            onClick={() => goToPokemonBattlePage(history, props.pokemon.name)}
+          >
+            Batalha
+          </button>
+        </ContainerButtonFight>
       ) : ""}
     </CardContainerMain>
   );
