@@ -1,9 +1,9 @@
 # POKEDEX
 
 ### Desenvolvido por: 
-- Clara Meirelles
-- Juliana Moraes
-- Gremis Tovar
+- [Clara Meirelles](https://github.com/ClaraMeirelles)
+- [Juliana Moraes](https://github.com/jhmoraes)
+- [Gremis Tovar](https://github.com/Gremis)
 
 Link do Surge: https://projeto-pokedex.surge.sh/
 
