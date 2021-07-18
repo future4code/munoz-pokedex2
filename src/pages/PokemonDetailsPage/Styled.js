@@ -5,20 +5,38 @@ export const DetailPageContainer = styled.main`
   align-items: center;
   justify-content: center;
 `
-export const StyledPokemonDetails = styled.section`
-    height: 80vh;
-    width: 70vw;
-    display:grid;
-    grid-template-columns:  1fr 1fr 1fr;
-    grid-template-rows: 10vh 1fr;
-    padding: 16px;
-    justify-self: center;
-    align-self: center;
 
+export const StyledPokemonDetails = styled.section`
+  height: fit-content;
+  height: 80vh;
+  width: 70vw;
+  display:grid;
+  grid-template-columns:  1fr 1fr 1fr;
+  grid-template-rows: 10vh 1fr;
+  padding: 16px;
+  justify-self: center;
+  align-self: center;
+  background-color: black;
+  margin-top: 30px;
+  border-radius: 30px;
+  color: lightgray;
+  strong, h1, h3{
+    color: white;
     text-decoration: underline;
+  } 
+  div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 50vh;
+    border-radius: 25px;
+    border: 1px solid lightgray;
+    padding: 16px;
+    margin: 8px;
+    align-items: space-between;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 800px){
     display: inline-block;
     margin: 0 auto;
     height: 138vh;
@@ -38,7 +56,7 @@ export const StyledPokemonDetails = styled.section`
     padding-left: 10px;
     padding-right: 2px;
     margin-left: 28px;
-  }
+    }
   }
 
   @media (max-width: 500px) {
@@ -54,25 +72,27 @@ export const StyledPokemonDetails = styled.section`
 
 export const PokemonImages = styled.section`
   grid-column: 1;
-  grid-row: 2;
+  grid-row: 1/3;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   img {
-    height: 30vh;
-    width: 30vw;
+    height: 25vh;
+    width: 25vh;
   }
   @media (max-width: 800px) {
     img {
-      height: 13vh;
+      height: 20vw;
       width: 20vw;
     }
   }
   @media (max-width: 500px) {
     img {
-      width: 25vw; 
+      width: 25vw;
+      height: 25vw;
     }
+  }
 `
 
 export const Details = styled.section`
