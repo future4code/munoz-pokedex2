@@ -78,6 +78,11 @@ Funcionamento da Batalhas Pokemon
 
 ![](public/batalha.gif)
 
+Funcionamento Responsivo
+
+![](public/responsivo.gif)
+
+
 
 
 
