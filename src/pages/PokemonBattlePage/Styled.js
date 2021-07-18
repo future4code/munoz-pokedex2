@@ -19,7 +19,7 @@ export const StyledPokemonDetails = styled.section`
   text-decoration: underline;
   margin-top: 30px;
   border-radius: 30px;
-  background-color: black;
+  background-color: rgb(25, 25, 25);
   color: lightgray;
   h1{
       grid-column: 1/3;
@@ -48,6 +48,11 @@ export const StyledPokemonDetails = styled.section`
     align-self: center;
     text-decoration: underline;
   }
+
+  @media (max-width: 800px) {
+    display: inline-block;
+  }
+
   @media (max-width: 500px) {
     h1 {
       font-size: 0.8rem;
@@ -78,15 +83,15 @@ export const PokemonImages = styled.section`
   }
   @media (max-width: 800px) {
     img {
-      height: 20vh;
-      width: 20vw;
+      height: 30vh;
+      width: 30vw;
     }
   }
   @media (max-width: 500px) {
     flex-direction: row;
     img {
-      height: 50vw;
-      width: 50vw;
+      height: 25vw;
+      width: 25vw;
     }
   }
 `;
@@ -125,4 +130,5 @@ export const Details = styled.section`
   button:active {
     background-color: rgb(182, 146, 1);
   }
+
 `

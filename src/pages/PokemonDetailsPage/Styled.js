@@ -16,7 +16,7 @@ export const StyledPokemonDetails = styled.section`
   padding: 16px;
   justify-self: center;
   align-self: center;
-  background-color: black;
+  background-color: rgb(25, 25, 25);
   margin-top: 30px;
   border-radius: 30px;
   color: lightgray;
@@ -39,7 +39,7 @@ export const StyledPokemonDetails = styled.section`
   @media (max-width: 800px){
     display: inline-block;
     margin: 0 auto;
-    height: 138vh;
+    height: 156vh;
 
     h1 {
       font-size: 1.2rem;
@@ -62,7 +62,7 @@ export const StyledPokemonDetails = styled.section`
   @media (max-width: 500px) {
     display: inline-block;
     margin: 0 auto;
-    height: 138vh;
+    height: 152vh;
 
     h1 {
       font-size: 1rem;
