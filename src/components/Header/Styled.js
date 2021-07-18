@@ -22,18 +22,20 @@ export const ContainerMain = styled.header`
 export const ControllerButtonOne = styled.button`
   position: absolute;
   left: 3rem;
-  background-color: transparent;
+  background-color: rgb(25, 25, 25);
+  box-shadow: inset 0 0 0.4em gold;
   color: lightgray;
-  border: 1px solid gray;
+  border: 1px solid rgb(239, 191, 1);
+  border-radius: 0.5rem;
   height: 3rem;
   width: 10rem;
   font-size: 1rem;
   cursor: pointer;
+
   @media (max-width: 800px) {
     font-size: 1rem;
-    height: 2rem;
+    height: 2.7rem;
     width: 8rem; 
-    border: none;
   }
 
   @media (max-width: 500px) {
@@ -45,18 +47,20 @@ export const ControllerButtonOne = styled.button`
 export const ControllerButtonTwo = styled.button`
   right: 3rem;
   position: absolute;
-  background-color: transparent;
+  background-color: rgb(25, 25, 25);
+  box-shadow: inset 0 0 0.4em gold;
+  border: 1px solid rgb(239, 191, 1);
+  border-radius: 0.5rem;
   color: lightgray;
-  border: 1px solid gray;
   height: 3rem;
   width: 10rem;
   font-size: 1rem;
   cursor: pointer;
+
   @media (max-width: 800px) {
     font-size: 1rem;
-    height: 2rem;
-    width: 7rem;
-    border: none;
+    height: 2.7rem;
+    width: 8rem;
   }
 
   @media (max-width: 500px) {
