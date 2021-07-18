@@ -4,6 +4,8 @@ export const DetailPageContainer = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
+
+ 
 `;
 
 export const StyledPokemonDetails = styled.section`
@@ -48,15 +50,19 @@ export const StyledPokemonDetails = styled.section`
     text-decoration: underline;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 800px) {
+    display: inline-block;
+    margin: 0 auto;
+    height: 138vh;
+
     h1 {
-      font-size: 0.8rem;
+      font-size: 1.2rem;
     }
     h3 {
-      font-size: 0.8rem;
+      font-size: 1.2rem;
     }
     p {
-      font-size: 0.6rem;
+      font-size: 1rem;
     }
     div {
     min-height: 40vh;
@@ -65,6 +71,16 @@ export const StyledPokemonDetails = styled.section`
     padding-right: 2px;
     margin-left: 28px;
   }
+  }
+
+  @media (max-width: 500px) {
+    display: inline-block;
+    margin: 0 auto;
+    height: 138vh;
+
+    h1 {
+      font-size: 1rem;
+    }
   }
 `;
 
@@ -81,14 +97,14 @@ export const PokemonImages = styled.section`
   }
   @media (max-width: 800px) {
     img {
-      height: 20vh;
+      height: 13vh;
       width: 20vw;
+
     }
   }
   @media (max-width: 500px) {
     img {
-      height: 10vh;
-      width: 10vw;
+      width: 25vw;
     }
   }
 `;
@@ -107,12 +123,10 @@ export const Details = styled.section`
     border-radius: 20px;
     border: 3px solid lightgray;
   }
-  @media (max-width: 800px) {
-    height: 60vh;
-    width: 15vw;
-  }
-  @media (max-width: 800px) {
-    width: 10vw;
-    font-size: 0.7rem;
+  @media (max-width: 800px) { 
+    width: 50vw;
+    letter-spacing: 0.1rem;
+    height: 40vh;
+   
   }
 `;
