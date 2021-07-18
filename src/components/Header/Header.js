@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { goToPokedexPage } from "../../routes/Coordinator";
 import Logo from "../../img/logo.png";
 import {
@@ -11,7 +11,6 @@ import {
 
 const Header = ({ ControllerButtonMain, title, ControllerButtonSecond }) => {
   const history = useHistory();
-  const pathParams = useParams();
 
   const ButtonHeader = () => {
     switch (title) {
@@ -30,7 +29,9 @@ const Header = ({ ControllerButtonMain, title, ControllerButtonSecond }) => {
         <ControllerButtonOne onClick={ControllerButtonMain}>
           {ButtonHeader()}
         </ControllerButtonOne>
-        <img src={Logo} />
+
+        <img src={Logo} alt={'Logo Pokémon'} />
+
         {ControllerButtonSecond && (
           <ControllerButtonTwo onClick={() => goToPokedexPage(history)}>
             Ir para Pokedex

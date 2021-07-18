@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
 import { useHistory, useParams } from "react-router-dom";
+import { goToHomePage } from '../../routes/Coordinator.js'
 import { StyledPokemonDetails, PokemonImages, DetailPageContainer, Details } from "./Styled";
 import axios from 'axios'
 import { BASE_URL } from "../../constants/url";
@@ -13,7 +14,6 @@ const PokemonDetailsPage = () => {
     axios.get(`${BASE_URL}/pokemon/${pathParams.name}`)
       .then((response) => {
         setPokemon(response.data)
-        console.log(response.data)
       })
       .catch((err) => {
         console.log('erro', err)
@@ -23,7 +23,7 @@ const PokemonDetailsPage = () => {
     <>
       <Header
         title={"Detalhes do Pokemon"}
-        ControllerButtonMain={() => history.goBack()}
+        ControllerButtonMain={() => goToHomePage(history)}
         ControllerButtonSecond
       />
       <DetailPageContainer>
@@ -31,7 +31,7 @@ const PokemonDetailsPage = () => {
           {pokemon &&
             <>
               <h1>{pokemon.forms[0].name}</h1>
-              <p><strong>Tipo:</strong>{pokemon.types.map((type) => { return " "+ type.type.name + " " })}</p>
+              <p><strong>Tipo:</strong>{pokemon.types.map((type) => { return " " + type.type.name + " " })}</p>
               <PokemonImages>
                 {pokemon.sprites.other.dream_world.front_default ?
                   <img src={pokemon.sprites.other.dream_world.front_default} alt={`imagem frontal do pokémon ${pathParams.name}`} /> :
