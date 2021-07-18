@@ -7,47 +7,47 @@ export const DetailPageContainer = styled.main`
 `;
 
 export const StyledPokemonDetails = styled.section`
-    height: fit-content;
-    width: 90vw;
-    display:grid;
-    align-items: center;
+  height: fit-content;
+  width: 90vw;
+  display:grid;
+  align-items: center;
+  justify-content: space-between;
+  grid-template-columns:  25vw 1fr 25vw;
+  padding: 16px;
+  justify-self: center;
+  align-self: center;
+  text-decoration: underline;
+  margin-top: 30px;
+  border-radius: 30px;
+  background-color: black;
+  color: lightgray;
+  h1{
+      grid-column: 1/3;
+      color:white;
+      text-decoration: underline;
+  }
+  div{
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    grid-template-columns:  25vw 1fr 25vw;
+    min-height: 50vh;
+    border-radius: 25px;
+    border: 1px solid lightgray;
     padding: 16px;
-    justify-self: center;
+    margin: 8px;
+    align-items: space-between;
+  }
+  aside{
+    grid-column: 1;
+  }
+  strong{
+    color:white;
+  }  
+  h3{
+    color: white;
     align-self: center;
     text-decoration: underline;
-    margin-top: 30px;
-    border-radius: 30px;
-    background-color: black;
-    color: lightgray;
-    h1{
-        grid-column: 1/3;
-        color:white;
-        text-decoration: underline;
-    }
-    div{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        min-height: 50vh;
-        border-radius: 25px;
-        border: 1px solid lightgray;
-        padding: 16px;
-        margin: 8px;
-        align-items: space-between;
-    }
-    aside{
-        grid-column: 1;
-    }
-    strong{
-        color:white;
-    }  
-    h3{
-        color: white;
-        align-self: center;
-        text-decoration: underline;
-    }
+  }
   @media (max-width: 500px) {
     h1 {
       font-size: 0.8rem;
@@ -83,38 +83,39 @@ export const PokemonImages = styled.section`
     }
   }
   @media (max-width: 500px) {
+    flex-direction: row;
     img {
-      height: 10vh;
-      width: 10vw;
+      height: 50vw;
+      width: 50vw;
     }
   }
 `;
 
 export const Details = styled.section`
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    height: 55vh;
-    margin-top: 36px;
-    ::-webkit-scrollbar {
-        width: 12px;
-    }
-    ::-webkit-scrollbar-track {
-        background: none;
-    }
-    ::-webkit-scrollbar-thumb {
-        background-color: white;
-        border-radius: 20px;
-        border: 3px solid lightgray;
-    }
-    button {
-        background-color: black;
-        color: white;
-        border: 2px solid rgb(239, 191, 1);
-        border-radius: 20px;
-        cursor: pointer;
-        margin-top: 8px;
-    }
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 55vh;
+  margin-top: 36px;
+  ::-webkit-scrollbar {
+      width: 12px;
+  }
+  ::-webkit-scrollbar-track {
+      background: none;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 20px;
+    border: 3px solid lightgray;
+  }
+  button {
+    background-color: black;
+    color: white;
+    border: 2px solid rgb(239, 191, 1);
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 8px;
+  }
 
   button:hover {
     background-color: rgb(239, 191, 1);

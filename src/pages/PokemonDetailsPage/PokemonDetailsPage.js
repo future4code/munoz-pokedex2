@@ -31,7 +31,7 @@ const PokemonDetailsPage = () => {
           {pokemon &&
             <>
               <h1>{pokemon.forms[0].name}</h1>
-              <p><strong>Tipo: </strong>{pokemon.types.map((type) => { return type.type.name + " " })}</p>
+              <p><strong>Tipo:</strong>{pokemon.types.map((type) => { return " "+ type.type.name + " " })}</p>
               <PokemonImages>
                 {pokemon.sprites.other.dream_world.front_default ?
                   <img src={pokemon.sprites.other.dream_world.front_default} alt={`imagem frontal do pokémon ${pathParams.name}`} /> :
@@ -47,7 +47,7 @@ const PokemonDetailsPage = () => {
                 <h3>Estatísticas</h3>
                 <Details>
                   {pokemon.stats.map((stat) => {
-                    return <p key={stat.stat.name}><strong>{stat.stat.name}: </strong>{stat.base_stat}</p>
+                    return <p key={stat.stat.name}><strong>{stat.stat.name}:</strong> {stat.base_stat}</p>
                   })}
                   <p><strong>weight: </strong>{pokemon.weight}</p>
                 </Details>
