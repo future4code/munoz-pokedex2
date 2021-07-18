@@ -70,10 +70,6 @@ Tela de detalhes
 
 ![](public/detalhes.png)
 
-Tela de Batalhas
-
-![](public/batalhas.png)
-
 Funcionamento Geral
 
 ![](public/funcionamento.gif)
