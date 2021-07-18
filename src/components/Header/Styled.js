@@ -9,13 +9,19 @@ export const ContainerMain = styled.header`
   color: white;
   box-shadow: 0 1em 1em black;
   img {
-    height: 27vh;
+    height: 22vh;
+  }
+
+  @media (max-width: 500px) {
+    img{
+      height: 18vh;
+    }
   }
 `;
 
 export const ControllerButtonOne = styled.button`
   position: absolute;
-  left: 30px;
+  left: 3rem;
   background-color: transparent;
   color: lightgray;
   border: 1px solid gray;
@@ -24,15 +30,20 @@ export const ControllerButtonOne = styled.button`
   font-size: 1rem;
   cursor: pointer;
   @media (max-width: 800px) {
-    font-size: 0.8rem;
-    left: 10px;
+    font-size: 1rem;
     height: 2rem;
+    width: 8rem; 
+    border: none;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 0.7rem;
     width: 5rem;
   }
 `;
 
 export const ControllerButtonTwo = styled.button`
-  right: 10px;
+  right: 3rem;
   position: absolute;
   background-color: transparent;
   color: lightgray;
@@ -42,8 +53,14 @@ export const ControllerButtonTwo = styled.button`
   font-size: 1rem;
   cursor: pointer;
   @media (max-width: 800px) {
-    font-size: 0.8rem;
+    font-size: 1rem;
     height: 2rem;
+    width: 7rem;
+    border: none;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 0.7rem;
     width: 5rem;
   }
 `;
@@ -66,10 +83,31 @@ export const ContainerLogo = styled.header`
   h1 {
     font-size: 1rem;
   }
-  @media (max-width: 700px) {
-    width: 10vw;
+
+  @media (max-width: 1400px) {
+    width: 30vw;
+    height: 8vh;
+    margin-bottom: 2rem;
     h1 {
-      display: none;
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 800px) {
+    width: 30vw;
+    height: 8vh;
+    margin-bottom: 2rem;
+    h1 {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    width: 45vw;
+    height: 8vh;
+    margin-bottom: 2rem;
+    h1 {
+      font-size: 0.8rem;
     }
   }
 `;

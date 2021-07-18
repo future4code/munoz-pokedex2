@@ -12,7 +12,7 @@ import {
 } from "./Styled";
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
-import { goToPokemonDetailsPage } from "../../routes/Coordinator";
+import { goToPokemonDetailsPage, goToHomePage } from "../../routes/Coordinator";
 
 const PokemonBattlePage = () => {
   const history = useHistory();
@@ -45,14 +45,17 @@ const PokemonBattlePage = () => {
   useEffect(() => {
     {
       rival &&
-        setRivalHp(rival.stats[0].base_stat)
-    }
-    {
-      pokemon &&
-        setPokemonHp(pokemon.stats[0].base_stat)
+      setRivalHp(rival.stats[0].base_stat)
     }
 
-  }, [rival, pokemon])
+    {
+      pokemon &&
+      setPokemonHp(pokemon.stats[0].base_stat)
+    }
+    {
+      pokemon && setPokemonHp(pokemon.stats[0].base_stat);
+    }
+  }, [rival, pokemon]);
 
   const randomIndex = () => {
     const max = 29;
@@ -60,19 +63,18 @@ const PokemonBattlePage = () => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
   const fight = (skill, value) => {
-
-    const rivalDefense = [rival.stats[2].base_stat, rival.stats[4].base_stat]
-    let indexDefense
-    if (skill.includes('special')) {
-      indexDefense = 1
+    const rivalDefense = [rival.stats[2].base_stat, rival.stats[4].base_stat];
+    let indexDefense;
+    if (skill.includes("special")) {
+      indexDefense = 1;
     } else {
-      indexDefense = 0
+      indexDefense = 0;
     }
-    setDamage((value * 2) / rivalDefense[indexDefense])
-    console.log(damage)
-    console.log(rival.stats[0].base_stat)
+    setDamage((value * 2) / rivalDefense[indexDefense]);
+    console.log(damage);
+    console.log(rival.stats[0].base_stat);
     if (damage > 1) {
-      setRivalHp(Math.floor(rivalHp / damage))
+      setRivalHp(Math.floor(rivalHp / damage));
     }
     // if ((skill.includes('special-attack') && value > rivalDefense[1]) || (skill === 'attack' && value > rivalDefense[0])) {
     if (rivalHp <= 0) {
@@ -93,20 +95,21 @@ const PokemonBattlePage = () => {
     //     timer: 1000,
     //   });
     // }
-  }
+  };
 
-  const attacks = pokemon && pokemon.stats.filter((stat) => {
-
-    if (stat.stat.name.includes('attack')) {
-      return true
-    }
-    return false
-  })
+  const attacks =
+    pokemon &&
+    pokemon.stats.filter((stat) => {
+      if (stat.stat.name.includes("attack")) {
+        return true;
+      }
+      return false;
+    });
   return (
     <>
       <Header
         title={"Batalha Pokemon"}
-        ControllerButtonMain={() => history.goBack()}
+        ControllerButtonMain={() => goToHomePage(history)}
         ControllerButtonSecond
       />
       <DetailPageContainer>
@@ -205,6 +208,7 @@ const PokemonBattlePage = () => {
                   <button
                     onClick={sortRival}> Trocar Rival </button>
                 </Details>
+
               </div>
             </>
           )}
