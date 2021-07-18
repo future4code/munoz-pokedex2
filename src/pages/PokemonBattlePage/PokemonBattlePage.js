@@ -8,6 +8,7 @@ import {
   PokemonImages,
   DetailPageContainer,
   Details,
+  PokemonInfosBatalha,
 } from "./Styled";
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
@@ -53,9 +54,6 @@ const PokemonBattlePage = () => {
 
   }, [rival, pokemon])
 
-  useEffect(() => {
-
-  }, [rivalHp])
   const randomIndex = () => {
     const max = 29;
     const min = 0;
@@ -81,9 +79,9 @@ const PokemonBattlePage = () => {
       Swal.fire({
         position: "top-center",
         icon: "success",
-        title: "Ganaste!!!",
+        title: `o seu ${pokemon.forms[0].name} venceu!!!`,
         showConfirmButton: false,
-        timer: 800,
+        timer: 1000,
       });
     }
     // } else {
@@ -92,7 +90,7 @@ const PokemonBattlePage = () => {
     //     icon: "error",
     //     title: "Perdeu!!!",
     //     showConfirmButton: false,
-    //     timer: 800,
+    //     timer: 1000,
     //   });
     // }
   }
@@ -131,15 +129,18 @@ const PokemonBattlePage = () => {
                 </PokemonImages>
                 <h1>{pokemon.forms[0].name}</h1>
                 <Details>
+                  <h3>HP: {pokemonHp}</h3>
                   {attacks.map((stat) => {
                     return (
-                      <button key={stat.stat.name} onClick={() => fight(stat.stat.name, stat.base_stat)} style={{ cursor: "pointer" }}>
+                      <button
+                        key={stat.stat.name}
+                        onClick={() => fight(stat.stat.name, stat.base_stat)}
+                        style={{ cursor: "pointer" }}>
                         <strong>{stat.stat.name}: </strong>
                         {stat.base_stat}
                       </button>
                     );
                   })}
-                  <h3>{pokemonHp}</h3>
                 </Details>
               </div>
               <div
@@ -153,14 +154,14 @@ const PokemonBattlePage = () => {
                   <img
                     width="120px"
                     src={rival.sprites.other.dream_world.front_default}
-                    alt={`imagem frontal do pokémon ${pathParams.name}`}
+                    alt={`imagem frontal do pokémon ${rival.forms[0].name}`}
                     style={{ WebkitTransform: "scaleX(-1)" }}
                   />
                 ) : (
                   <img
                     width="120px"
                     src={rival.sprites.front_default}
-                    alt={`imagem frontal do pokémon ${pathParams.name}`}
+                    alt={`imagem frontal do pokémon ${rival.forms[0].name}`}
                     style={{ WebkitTransform: "scaleX(-1)" }}
                   />
                 )}
@@ -197,9 +198,13 @@ const PokemonBattlePage = () => {
                   )}
                 </PokemonImages>
                 <h1>{rival.forms[0].name}</h1>
-                <h3>{rivalHp}</h3>
-                <button
-          onClick={() => goToPokemonDetailsPage(history, rival.forms[0].name)}> Ver Detalhes </button>
+                <Details>
+                  <h3>HP: {rivalHp}</h3>
+                  <button
+                    onClick={() => goToPokemonDetailsPage(history, rival.forms[0].name)}> Ver Detalhes </button>
+                  <button
+                    onClick={sortRival}> Trocar Rival </button>
+                </Details>
               </div>
             </>
           )}
