@@ -8,7 +8,7 @@
 Link do Surge: https://projeto-pokedex.surge.sh/
 
 ### O que funciona:
-- Permite visualizar os Pokémons da API
+- Permite visualizar os Pokémons da [PokeAPI](https://pokeapi.co/)
 - Paginação feita com 29 pokémons por página
 - Permite ao usuário que adicione e remova pokémons da sua pokédex
 - Batalhas com pokémons adicionados à sua pokédex (adversário escolhido aleatóriamente)
