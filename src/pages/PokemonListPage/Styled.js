@@ -9,13 +9,16 @@ export const ListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-bottom: 3vh;
 `;
 
 export const ContainerPagination = styled.div`
-  bottom: 0;
+  height: 5vh;
   background-color: whitesmoke;
   display: flex;
-  justify-content: center;
+  justify-content: center; 
   align-items: center;
   position: fixed;
+  bottom: 0;
+  width: 100vw;
 `;
