@@ -61,10 +61,15 @@ export const StyledPokemonDetails = styled.section`
   @media (max-width: 500px) {
     display: inline-block;
     margin: 0 auto;
-    height: 152vh;
-
+    height: fit-content;
+    width: 80vw;
+    align-items: center;
+    justify-content: center;
     h1 {
       font-size: 1rem;
+    }
+    div {
+      margin-left: 8px;
     }
   }
 `
@@ -81,17 +86,20 @@ export const PokemonImages = styled.section`
     width: 25vh;
   }
 
-  @media (max-width: 800px) {
+  @media (min-width: 501px) and (max-width: 800px) {
     img {
-      height: 20vw;
-      width: 20vw;
+      height: 25vh;
+      width: 25vw;
     }
   }
 
   @media (max-width: 500px) {
+    flex-direction: row !important;
+    justify-items: space-evenly;
     img {
-      width: 25vw;
-      height: 25vw;
+      width: 30vw;
+      height: 30vw;
+      margin: 8px;
     }
   }
 `
@@ -112,9 +120,11 @@ export const Details = styled.section`
   }
 
   @media (max-width: 800px) { 
-    width: 50vw;
+    /* width: 50vw; */
     letter-spacing: 0.1rem;
-    height: 40vh;
-   
+    /* height: 40vh; */
+    height: fit-content;
+    max-height: 40vh;
+    padding: 8px;
   }
 `

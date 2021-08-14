@@ -10,7 +10,13 @@ const GlobalState = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    getPokemonNames();
+    const limit = 30 * (currentPage - 1);
+    axios
+      .get(`${BASE_URL}/pokemon?limit=30&offset=${limit}`)
+      .then((response) => {
+        setPokemonNames(response.data.results);
+      })
+      .catch((error) => console.log(error.message));
   }, [currentPage]);
 
   useEffect(() => {
@@ -32,16 +38,6 @@ const GlobalState = (props) => {
       });
     });
   }, [pokemonNames, currentPage]);
-
-  const getPokemonNames = () => {
-    const limit = 30 * (currentPage - 1);
-    axios
-      .get(`${BASE_URL}/pokemon?limit=30&offset=${limit}`)
-      .then((response) => {
-        setPokemonNames(response.data.results);
-      })
-      .catch((error) => console.log(error.message));
-  };
 
   const data = {
     pokemons,

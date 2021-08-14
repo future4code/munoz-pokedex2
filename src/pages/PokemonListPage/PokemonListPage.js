@@ -35,8 +35,7 @@ const PokemonListPage = () => {
       <ContainerPagination>
         <Pagination
           count={38}
-          color="secondary"
-          size="large"
+          color="primary"
           page={currentPage}
           onChange={handleChange}
         />

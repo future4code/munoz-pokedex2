@@ -8,6 +8,8 @@ import {
   PokemonImages,
   BattlePageContainer,
   Details,
+  PokemonBattleImage,
+  RivalBattleImage,
 } from "./Styled";
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
@@ -40,7 +42,7 @@ const PokemonBattlePage = () => {
       .catch((err) => {
         console.log("erro", err);
       });
-  }, []);
+  }, [pathParams.name]);
 
   useEffect(() => {
      rival && setRivalHp(rival.stats[0].base_stat) 
@@ -78,6 +80,8 @@ const PokemonBattlePage = () => {
   useEffect(() => {
     if (pokemonHp > 0 && pokemon && pokemonDamage) {
       let damageValue = ((pokemon.stats[0].base_stat) - pokemonHp)
+      console.log(damageValue)
+      console.log(pokemon.stats[0])
       Swal.fire({
         position: "center",
         icon: "info",
@@ -124,7 +128,6 @@ const PokemonBattlePage = () => {
     const randomIndexBattle = Math.floor(Math.random(0, 2));
     setPokemonDamage((rivalAttackArray[randomIndexBattle] * 2) / pokemonDefense[randomIndexBattle]);
   }
-
   const attacks =
     pokemon &&
     pokemon.stats.filter((stat) => {
@@ -183,14 +186,14 @@ const PokemonBattlePage = () => {
                 }}
               >
                 {rival.sprites.other.dream_world.front_default ? (
-                  <img
+                  <RivalBattleImage
                     width="120px"
                     src={rival.sprites.other.dream_world.front_default}
                     alt={`imagem frontal do pokémon ${rival.forms[0].name}`}
                     style={{ WebkitTransform: "scaleX(-1)" }}
                   />
                 ) : (
-                  <img
+                  <PokemonBattleImage
                     width="120px"
                     src={rival.sprites.front_default}
                     alt={`imagem frontal do pokémon ${rival.forms[0].name}`}
@@ -198,14 +201,14 @@ const PokemonBattlePage = () => {
                   />
                 )}
                 {pokemon.sprites.other.dream_world.back_default ? (
-                  <img
+                  <PokemonBattleImage
                     width="280px"
                     src={pokemon.sprites.other.dream_world.back_default}
                     alt={`imagem do ${pathParams.name} de costas`}
                     style={{ marginRight: "50%" }}
                   />
                 ) : (
-                  <img
+                  <PokemonBattleImage
                     width="280px"
                     src={pokemon.sprites.back_default}
                     alt={`imagem do ${pathParams.name} de costas`}
@@ -218,13 +221,13 @@ const PokemonBattlePage = () => {
                   {rival.sprites.other.dream_world.front_default ? (
                     <img
                       src={rival.sprites.other.dream_world.front_default}
-                      alt={`imagem frontal do pokémon ${pathParams.name}`}
+                      alt={`imagem frontal do pokémon ${rival.forms[0].name}`}
                       style={{ WebkitTransform: "scaleX(-1)" }}
                     />
                   ) : (
                     <img
                       src={rival.sprites.front_default}
-                      alt={`imagem frontal do pokémon ${pathParams.name}`}
+                      alt={`imagem frontal do pokémon ${rival.forms[0].name}`}
                       style={{ WebkitTransform: "scaleX(-1)" }}
                     />
                   )}

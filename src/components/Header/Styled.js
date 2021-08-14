@@ -12,7 +12,13 @@ export const ContainerMain = styled.header`
     height: 22vh;
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 850px) {
+    padding: 0;
+    button{
+      margin-top: 12px;
+    }
+  }
+  @media (max-width: 500px){
     img{
       height: 18vh;
     }
@@ -36,6 +42,7 @@ export const ControllerButtonOne = styled.button`
     font-size: 1rem;
     height: 2.7rem;
     width: 8rem; 
+    left: 12px;
   }
 
   @media (max-width: 500px) {
@@ -61,6 +68,7 @@ export const ControllerButtonTwo = styled.button`
     font-size: 1rem;
     height: 2.7rem;
     width: 8rem;
+    right: 12px;
   }
 
   @media (max-width: 500px) {

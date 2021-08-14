@@ -4,6 +4,11 @@ export const BattlePageContainer = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 850px) {
+    margin-top: 0;
+    max-height: 80vh;
+  }
 `;
 
 export const StyledPokemonBattle = styled.section`
@@ -30,13 +35,13 @@ export const StyledPokemonBattle = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 50vh;
     border-radius: 25px;
     border: 1px solid lightgray;
     padding: 16px;
     margin: 8px;
     align-items: space-between;
   }
+  
   aside{
     grid-column: 1;
   }
@@ -49,13 +54,20 @@ export const StyledPokemonBattle = styled.section`
     text-decoration: underline;
   }
 
-  @media (max-width: 800px) {
-    display: inline-block;
-  }
-
-  @media (max-width: 500px) {
+  @media (min-width: 501px) and (max-width: 850px) {
+    width: 99vw;
+    grid-template-columns: 30vw 1fr 30vw;
+    img{
+      height: 100px;
+      width: 100px;
+    }
+    div{
+      max-height:80vh;
+      display: flex;
+      flex-direction: column;
+    }
     h1 {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
     h3 {
       font-size: 0.8rem;
@@ -63,15 +75,56 @@ export const StyledPokemonBattle = styled.section`
     p {
       font-size: 0.6rem;
     }
+  }
+
+  @media (max-width: 500px) {
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 45vw 45vw;
+    grid-template-rows: 40vh 40vh;
+    gap: 8px;
+    margin-top: 0;
+    h1 {
+      font-size: 0.7rem;
+    }
+    h3 {
+      font-size: 0.7rem;
+    }
+    p {
+      font-size: 0.5rem;
+    }
     div {
-      min-height: 40vh;
+      height: 35vh !important;
       border-radius: 15px;
       padding-left: 10px;
       margin-left: 28px;
+      align-items: center;
+      margin: 0;
+      :nth-child(2){
+      grid-column: 1/3;
+      grid-row: 2;
+      }
+    }
+    img{
+      width: 8vw;
+      height: 8vw;
     }
   }
 `
-
+export const RivalBattleImage = styled.img`
+  @media (max-width: 500px){
+    height: 30vw !important;
+    width: 30vw !important;
+  }
+`
+export const PokemonBattleImage = styled.img`
+  @media (max-width: 500px){
+    height: 40vw !important;
+    width: 40vw !important;
+  }
+`
 export const PokemonImages = styled.section`
   display: flex;
   flex-direction: column;
@@ -131,5 +184,10 @@ export const Details = styled.section`
 
   button:active {
     background-color: rgb(182, 146, 1);
+  }
+  @media (max-width: 800px) {
+    overflow: hidden;
+    padding: 0;
+    margin-top: 0;
   }
 `
