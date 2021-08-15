@@ -14,6 +14,7 @@ import {
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
 import { goToPokemonDetailsPage, goToHomePage } from "../../routes/Coordinator";
+import { useAttackStrenght } from "./attackStrenght";
 
 const PokemonBattlePage = () => {
   const history = useHistory();
@@ -26,10 +27,16 @@ const PokemonBattlePage = () => {
   const [rivalHp, setRivalHp] = useState();
   const [pokemonHp, setPokemonHp] = useState();
 
+  console.log(pokemon)
+  console.log(rival)
+  console.log("pokemonStrenght", pokemonStrenght)
+  console.log("rivalStrenght", rivalStrenght)
+  console.log("rivalDamage", rivalDamage)
   const sortRival = () => {
     const index = randomIndex();
     let pokemonRival = pokemons[index];
     setRival(pokemonRival);
+
   };
 
   useEffect(() => {
@@ -40,28 +47,48 @@ const PokemonBattlePage = () => {
         sortRival();
       })
       .catch((err) => {
-        console.log("erro", err);
+        if (err.response.data.message) {
+          Swal.fire({
+            position: "center",
+            icon: "info",
+            title: `${err.response.data.message}`,
+            showConfirmButton: false,
+            timer: 2000,
+          })
+        } else {
+          Swal.fire({
+            position: "center",
+            icon: "info",
+            title: "Um erro ocorreu, tente novamente mais tarde",
+            showConfirmButton: false,
+            timer: 2000,
+          })
+        }
       });
   }, [pathParams.name]);
 
   useEffect(() => {
-     rival && setRivalHp(rival.stats[0].base_stat) 
-     pokemon && setPokemonHp(pokemon.stats[0].base_stat) 
+    rival && setRivalHp(rival.stats[0].base_stat)
+    pokemon && setPokemonHp(pokemon.stats[0].base_stat)
   }, [rival, pokemon]);
 
   useEffect(() => {
-    if (rivalDamage > 1) {
-      setRivalHp(Math.floor(rivalHp / rivalDamage));
+    if (rivalDamage) {
+      const hp = rivalHp - rivalDamage
+      if (hp < 0) {
+        setRivalHp(0)
+      } else {
+        setRivalHp(hp)
+      }
     }
   }, [rivalDamage])
 
   useEffect(() => {
     if (rival && rivalHp > 0 && rivalDamage) {
-      const damageValue = ((rival.stats[0].base_stat) - rivalHp)
       Swal.fire({
         position: "center",
         icon: "info",
-        title: `o seu ${pokemon.forms[0].name} causou ${damageValue} de dano no ${rival.forms[0].name}`,
+        title: `o seu ${pokemon.forms[0].name} causou ${rivalDamage} de dano no ${rival.forms[0].name}`,
         showConfirmButton: false,
         timer: 2000,
       }).then(() => rivalAttack())
@@ -73,19 +100,24 @@ const PokemonBattlePage = () => {
         showConfirmButton: false,
         timer: 2000,
       });
-    }
-    setRivalDamage(false)
-  }, [rivalHp])
-
-  useEffect(() => {
-    if (pokemonHp > 0 && pokemon && pokemonDamage) {
-      let damageValue = ((pokemon.stats[0].base_stat) - pokemonHp)
-      console.log(damageValue)
-      console.log(pokemon.stats[0])
+    } else if (rivalDamage === "0"){
       Swal.fire({
         position: "center",
         icon: "info",
-        title: `o seu ${pokemon.forms[0].name} sofreu ${damageValue} de dano do ${rival.forms[0].name}`,
+        title: `o seu ${pokemon.forms[0].name} causou ${rivalDamage} de dano no ${rival.forms[0].name}`,
+        showConfirmButton: false,
+        timer: 2000,
+      }).then(() => rivalAttack())
+    }
+    setRivalDamage(false)
+  }, [rivalHp, rivalDamage])
+
+  useEffect(() => {
+    if (pokemonHp > 0 && pokemonDamage) {
+      Swal.fire({
+        position: "center",
+        icon: "info",
+        title: `o seu ${pokemon.forms[0].name} sofreu ${pokemonDamage} de dano do ${rival.forms[0].name}`,
         showConfirmButton: false,
         timer: 2000,
       });
@@ -97,13 +129,26 @@ const PokemonBattlePage = () => {
         showConfirmButton: false,
         timer: 2000,
       });
+    } else if (pokemonDamage === "0"){
+      Swal.fire({
+        position: "center",
+        icon: "info",
+        title: `o seu ${pokemon.forms[0].name} sofreu ${pokemonDamage} de dano do ${rival.forms[0].name}`,
+        showConfirmButton: false,
+        timer: 2000,
+      });
     }
     setPokemonDamage(false)
-  }, [pokemonHp])
+  }, [pokemonHp, pokemonDamage])
 
   useEffect(() => {
-    if (pokemonDamage !== 0 && pokemonDamage > 1) {
-      setPokemonHp(Math.floor(pokemonHp / pokemonDamage));
+    if (pokemonDamage) {
+      const hp = pokemonHp - pokemonDamage
+      if (hp < 0) {
+        setPokemonHp(0)
+      } else {
+        setPokemonHp(hp);
+      }
     }
   }, [pokemonDamage])
 
@@ -120,13 +165,26 @@ const PokemonBattlePage = () => {
     } else {
       indexDefense = 0;
     }
-    setRivalDamage((value * 2) / rivalDefense[indexDefense]);
+    const attack = value * 2
+    const damage = Math.floor((attack - rivalDefense[indexDefense]) / 2)
+    if (damage > 0) {
+      setRivalDamage(damage);
+    } else {
+      setRivalDamage("0")
+    }
   };
+
   const rivalAttack = () => {
     const rivalAttackArray = [rival.stats[1].base_stat, rival.stats[3].base_stat]
     const pokemonDefense = [pokemon.stats[2].base_stat, pokemon.stats[4].base_stat]
     const randomIndexBattle = Math.floor(Math.random(0, 2));
-    setPokemonDamage((rivalAttackArray[randomIndexBattle] * 2) / pokemonDefense[randomIndexBattle]);
+    const attack = (rivalAttackArray[randomIndexBattle] * 2)
+    const damage = Math.floor((attack - pokemonDefense[randomIndexBattle]) / 2)
+    if (damage > 0) {
+      setPokemonDamage(damage);
+    } else {
+      setPokemonDamage("0")
+    }
   }
   const attacks =
     pokemon &&
