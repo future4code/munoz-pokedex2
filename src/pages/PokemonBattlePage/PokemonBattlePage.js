@@ -14,7 +14,7 @@ import {
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
 import { goToPokemonDetailsPage, goToHomePage } from "../../routes/Coordinator";
-import { useAttackStrenght } from "./attackStrenght";
+import { useAttackStrength } from "./useAttackStrength";
 
 const PokemonBattlePage = () => {
   const history = useHistory();
@@ -26,12 +26,8 @@ const PokemonBattlePage = () => {
   const [pokemonDamage, setPokemonDamage] = useState();
   const [rivalHp, setRivalHp] = useState();
   const [pokemonHp, setPokemonHp] = useState();
+  const { pokemonStrength, rivalStrength } = useAttackStrength(pokemon, rival)
 
-  console.log(pokemon)
-  console.log(rival)
-  console.log("pokemonStrenght", pokemonStrenght)
-  console.log("rivalStrenght", rivalStrenght)
-  console.log("rivalDamage", rivalDamage)
   const sortRival = () => {
     const index = randomIndex();
     let pokemonRival = pokemons[index];
@@ -166,7 +162,7 @@ const PokemonBattlePage = () => {
       indexDefense = 0;
     }
     const attack = value * 2
-    const damage = Math.floor((attack - rivalDefense[indexDefense]) / 2)
+    const damage = Math.floor((attack - rivalDefense[indexDefense]) / rivalStrength)
     if (damage > 0) {
       setRivalDamage(damage);
     } else {
@@ -179,7 +175,7 @@ const PokemonBattlePage = () => {
     const pokemonDefense = [pokemon.stats[2].base_stat, pokemon.stats[4].base_stat]
     const randomIndexBattle = Math.floor(Math.random(0, 2));
     const attack = (rivalAttackArray[randomIndexBattle] * 2)
-    const damage = Math.floor((attack - pokemonDefense[randomIndexBattle]) / 2)
+    const damage = Math.floor((attack - pokemonDefense[randomIndexBattle]) / pokemonStrength)
     if (damage > 0) {
       setPokemonDamage(damage);
     } else {
