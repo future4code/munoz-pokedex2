@@ -11,9 +11,7 @@ export const useAttackStrength = (pokemon, rival) => {
         if (pokemon && pokemon.types) {
             const types = []
             pokemon.types.map((type) => {
-                console.log("tipo: ", type.type.name)
                 types.push(type.type.name)
-                console.log("tipo: ", types)
             })
             setPokemonType(types)
         }
